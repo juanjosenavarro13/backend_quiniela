@@ -18,7 +18,14 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'pruebas']]);
+    }
+
+    public function pruebas()
+    {
+        $user = User::find(39);
+        $user->role;
+        return response()->json($user, 200);
     }
 
     /**

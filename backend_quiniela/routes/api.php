@@ -30,6 +30,9 @@ Route::group(['prefix' => 'v1'], function ($router) {
         Route::post('me', [AuthController::class, 'me']);
         Route::post('register', [AuthController::class, 'register']);
     });
+
+    // pruebas
+    Route::get('pruebas', [AuthController::class, 'pruebas']);
 });
 
 // route sin permisos
