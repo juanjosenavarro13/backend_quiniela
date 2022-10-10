@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class TeamController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['list']]);
+    }
+
     public function create(Request $request)
     {
 
@@ -73,5 +79,10 @@ class TeamController extends Controller
         }
 
         return response()->json('equipo no encontrado', 400);
+    }
+
+    public function list()
+    {
+        return Team::all();
     }
 }
