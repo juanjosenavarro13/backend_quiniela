@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,13 @@ use App\Http\Controllers\AuthController;
 
 
 
-Route::group(['prefix' => 'v1'], function ($router) {
+Route::group(['prefix' => 'v1'], function () {
     // auth
     Route::group([
         'middleware' => 'api',
         'namespace' => 'App\Http\Controllers',
         'prefix' => 'auth'
-    ], function ($router) {
+    ], function () {
         Route::post('login', [AuthController::class, 'login']);
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
@@ -31,8 +32,11 @@ Route::group(['prefix' => 'v1'], function ($router) {
         Route::post('register', [AuthController::class, 'register']);
     });
 
-    // pruebas
-    Route::get('pruebas', [AuthController::class, 'pruebas']);
+    Route::group(['prefix' => 'team'], function () {
+        Route::post('create', [TeamController::class, 'create']);
+        Route::put('edit', [TeamController::class, 'edit']);
+        Route::delete('delete', [TeamController::class, 'delete']);
+    });
 });
 
 // route sin permisos
