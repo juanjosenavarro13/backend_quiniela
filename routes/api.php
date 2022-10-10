@@ -34,8 +34,9 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['prefix' => 'team'], function () {
         Route::post('create', [TeamController::class, 'create']);
-        Route::put('edit', [TeamController::class, 'edit']);
+        Route::post('edit/{id}', [TeamController::class, 'edit']);
         Route::delete('delete', [TeamController::class, 'delete']);
+        Route::get('list', [TeamController::class, 'list']);
     });
 });
 
