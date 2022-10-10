@@ -83,6 +83,6 @@ class TeamController extends Controller
 
     public function list()
     {
-        return Team::all();
+        return Team::paginate(10);
     }
 }
