@@ -63,4 +63,15 @@ class TeamController extends Controller
 
         return response()->json($team, 200);
     }
+
+    public function delete($id)
+    {
+        $team = Team::find($id);
+        if ($team) {
+            $team->delete();
+            return response()->json('Equipo eliminado correctamente', 200);
+        }
+
+        return response()->json('equipo no encontrado', 400);
+    }
 }
